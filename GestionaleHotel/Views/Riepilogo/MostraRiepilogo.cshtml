@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Riepilogo";
+}
+
+<div class="container my-5">
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">
+                Lista Clienti
+            </button>
+        </p>
+        <div class="collapse" id="collapseClienti">
+            <div class="card card-body">
+                @{Html.RenderAction("PWIndex", "Cliente");}
+            </div>
+        </div>
+    </div>
+</div>
