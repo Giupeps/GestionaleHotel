@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GestionaleHotel.Models.Prenotazione>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCamera.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPrenotazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InizioPrenotazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinePrenotazione)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Tariffa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClienti.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClienti.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPernottamento.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCamera.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataPrenotazione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InizioPrenotazione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinePrenotazione)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Tariffa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdClienti.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdClienti.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPernottamento.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace GestionaleHotel.Models
 {
@@ -20,7 +21,7 @@ namespace GestionaleHotel.Models
         public string Cognome { get; set; }
 
         [Required(ErrorMessage = "Il campo è obbligatorio")]
-        [Display(Name = "Codice Fiscale")]
+        [Display(Name = "C.F.")]
         [StringLength(16, MinimumLength = 16, ErrorMessage = "Il campo deve contenere 16 caratteri")]
         public string CodiceFiscale { get; set; }
 
@@ -44,6 +45,37 @@ namespace GestionaleHotel.Models
         [Display(Name = "Cellulare")]
         public string Cellulare { get; set; }
 
+        public static List<SelectListItem> GetClientiDropdown()
+        {
+            SqlConnection con = Connessione.GetConnection();
+            List<SelectListItem> ListaClientiDropdown = new List<SelectListItem>();
+
+            try
+            {
+                con.Open();
+                SqlCommand command = Connessione.GetCommand("Select * from Clienti", con);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        SelectListItem ca = new SelectListItem();
+                        ca.Text = reader["Nome"].ToString() + " " + reader["Cognome"].ToString();
+                        ca.Value = reader["IdCliente"].ToString();
+                        ListaClientiDropdown.Add(ca);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+            finally { con.Close(); }
+            return ListaClientiDropdown;
+        }
+
        public static List<Clienti> Getclienti()
         {
             SqlConnection con = Connessione.GetConnection();
@@ -60,7 +92,7 @@ namespace GestionaleHotel.Models
                     while (reader.Read())
                     {
                         Clienti cliente = new Clienti();
-                        cliente.ID = Convert.ToInt32(reader["ID"]);
+                        cliente.ID = Convert.ToInt32(reader["IDCliente"]);
                         cliente.Nome = reader["Nome"].ToString();
                         cliente.Cognome = reader["Cognome"].ToString();
                         cliente.CodiceFiscale = reader["CodiceFiscale"].ToString();
@@ -136,7 +168,7 @@ namespace GestionaleHotel.Models
             try
             {
                 con.Open();
-                SqlCommand command = Connessione.GetCommand("Select * from Clienti where id = @ID", con);
+                SqlCommand command = Connessione.GetCommand("Select * from Clienti where idcliente = @ID", con);
                 command.Parameters.AddWithValue("@ID", id);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -144,7 +176,7 @@ namespace GestionaleHotel.Models
                 {
                     while (reader.Read())
                     {
-                        cliente.ID = Convert.ToInt32(reader["ID"]);
+                        cliente.ID = Convert.ToInt32(reader["IDcliente"]);
                         cliente.Nome = reader["Nome"].ToString();
                         cliente.Cognome = reader["Cognome"].ToString();
                         cliente.CodiceFiscale = reader["CodiceFiscale"].ToString();
@@ -182,7 +214,7 @@ namespace GestionaleHotel.Models
             try
             {
                 con.Open();
-                SqlCommand command = Connessione.GetCommand("Update Clienti Set Nome=@Nome, Cognome=@Cognome, CodiceFiscale=@CodiceFiscale, Citta=@Citta, Provincia=@Provincia, Email=@Email, Telefono=@Telefono, Cellulare=@Cellulare where id = @ID", con);
+                SqlCommand command = Connessione.GetCommand("Update Clienti Set Nome=@Nome, Cognome=@Cognome, CodiceFiscale=@CodiceFiscale, Citta=@Citta, Provincia=@Provincia, Email=@Email, Telefono=@Telefono, Cellulare=@Cellulare where idcliente = @ID", con);
 
                 command.Parameters.AddWithValue("@ID", id);
                 command.Parameters.AddWithValue("@Nome", c.Nome);
@@ -222,7 +254,7 @@ namespace GestionaleHotel.Models
             try
             {
                 con.Open();
-                SqlCommand command = Connessione.GetCommand("Delete from Clienti where id = @ID", con);
+                SqlCommand command = Connessione.GetCommand("Delete from Clienti where idcliente = @ID", con);
                 command.Parameters.AddWithValue("@ID", id);
                 command.ExecuteNonQuery(); 
             }

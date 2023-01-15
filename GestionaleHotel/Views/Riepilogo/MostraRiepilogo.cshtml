@@ -6,12 +6,48 @@
     <div>
         <p>
             <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">
+                Lista Prenotazioni
+            </button>
+        </p>
+        <div class="collapse" id="collapseClienti">
+            <div class="card card-body">
+                @{Html.RenderAction("PWIndex", "Prenotazioni");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">
                 Lista Clienti
             </button>
         </p>
         <div class="collapse" id="collapseClienti">
             <div class="card card-body">
                 @{Html.RenderAction("PWIndex", "Cliente");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">
+                Lista Camere
+            </button>
+        </p>
+        <div class="collapse" id="collapseClienti">
+            <div class="card card-body">
+                @{Html.RenderAction("PWIndex", "Camere");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">
+                Tipo pernottamenti
+            </button>
+        </p>
+        <div class="collapse" id="collapseClienti">
+            <div class="card card-body">
+                @{Html.RenderAction("PWIndex", "Pernottamenti");}
             </div>
         </div>
     </div>

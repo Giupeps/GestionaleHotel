@@ -120,14 +120,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CamereController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PernottamentiController.cs" />
+    <Compile Include="Controllers\PrenotazioniController.cs" />
     <Compile Include="Controllers\RiepilogoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Camera.cs" />
     <Compile Include="Models\Clienti.cs" />
     <Compile Include="Models\Connessione.cs" />
+    <Compile Include="Models\Pernottamento.cs" />
+    <Compile Include="Models\Prenotazione.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,13 @@
     <Content Include="Views\Cliente\_PWIndex.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Camere\_PWIndex.cshtml" />
+    <Content Include="Views\Camere\Create.cshtml" />
+    <Content Include="Views\Camere\Edit.cshtml" />
+    <Content Include="Views\Pernottamenti\_PWIndex.cshtml" />
+    <Content Include="Views\Prenotazioni\_PWIndex.cshtml" />
+    <Content Include="Views\Prenotazioni\Create.cshtml" />
+    <Content Include="Views\Prenotazioni\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
