@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GestionaleHotel.Models.Prenotazione>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea Nuovo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -61,9 +61,8 @@
             @Html.DisplayFor(modelItem => item.IdPernottamento.Descrizione)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Modifica", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Cancella", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

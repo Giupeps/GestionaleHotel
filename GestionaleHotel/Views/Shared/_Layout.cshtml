@@ -9,25 +9,24 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Informazioni", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contatto", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-bg-light">
+        <a class="navbar-brand ms-4 text-light" href="#">Hotel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-around " id="navbarNav">
+            <ul class="navbar-nav ">
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    <li class="me-3">@Html.ActionLink("Riepilogo", "MostraRiepilogo", "Riepilogo")</li>
+                    <li class="me-3">@Html.ActionLink("Crea Prenotazione", "Create", "Prenotazioni")</li>
+                    <li class="me-3">@Html.ActionLink("Nuovo Cliente", "Create", "Cliente")</li>
+                    <li class="me-3">@Html.ActionLink("Logout", "Logout", "Home")</li>
+                }
+            </ul>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />

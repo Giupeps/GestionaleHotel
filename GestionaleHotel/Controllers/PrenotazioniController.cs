@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace GestionaleHotel.Controllers
 {
+    [Authorize]
     public class PrenotazioniController : Controller
     {
         // GET: Prenotazioni
@@ -77,5 +78,5 @@ namespace GestionaleHotel.Controllers
             return RedirectToAction("MostraRiepilogo", "Riepilogo");
         }
 
-    }
+    } 
 }

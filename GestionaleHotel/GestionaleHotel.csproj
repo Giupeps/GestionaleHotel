@@ -134,6 +134,7 @@
     <Compile Include="Models\Connessione.cs" />
     <Compile Include="Models\Pernottamento.cs" />
     <Compile Include="Models\Prenotazione.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -207,7 +208,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Riepilogo\MostraRiepilogo.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cliente\_PWIndex.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
@@ -218,6 +218,7 @@
     <Content Include="Views\Prenotazioni\_PWIndex.cshtml" />
     <Content Include="Views\Prenotazioni\Create.cshtml" />
     <Content Include="Views\Prenotazioni\Edit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace GestionaleHotel.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
         // GET: Cliente

@@ -51,4 +51,53 @@
             </div>
         </div>
     </div>
+
+    <p>Ricerca Prenotazioni per codice fiscale</p>
+    <input id="SearchByCF" type="text" class="form-control d-inline"/>
+    <button id="SearchCF" class="btn-primary">Cerca</button>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Prenotazione</th>
+                <th>Data Prenotazione</th>
+                <th>Inizio Soggiorno</th>
+                <th>Fine Soggiorno</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Codice Fiscale</th>
+                <th>Camera n°</th>
+                <th>Pensione</th>
+            </tr>
+            <tr id="Risultati"></tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#SearchCF').click(function () {
+                $.ajax({
+                    method: 'GET',
+                    data: { 'codicefiscale': $('#SearchByCF').val() },
+                    url: 'GetPrenotazioniByCF',
+                    success: function (prenotazionebyCF) {
+                        $.each(prenotazionebyCF, function (index, pren) {
+                            $('#Risultati').append("<td>" + pren.Id + "</td>"+
+                                "<td>" + pren.DataPrenotazione + "</td>" +
+                                "<td>" + pren.InizioPrenotazione + "</td>"+ 
+                                "<td>" + pren.FinePrenotazione + "</td>"+
+                                "<td>" + pren.IdClienti.Nome + "</td>"+
+                                "<td>" + pren.IdClienti.Cognome + "</td>"+
+                                "<td>" + pren.IdClienti.CodiceFiscale + "</td>"+
+                                "<td>" + pren.IdCamera.Numero + "</td>"+
+                                "<td>" + pren.IdPernottamento.Tipologia + "</td>"
+                            )
+                            
+                        })
+                    }
+                })
+            })
+        })
+
+    </script>
 </div>

@@ -31,8 +31,8 @@ namespace GestionaleHotel.Models
         [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         public int Anno { get; set; }
 
-        [Required(ErrorMessage = "Il campo è obbligatorio")]
-        [DisplayFormat(DataFormatString ="{0:c}")]
+        [Required(ErrorMessage = "Il campo è obbligatorio" )]
+        [DisplayFormat(DataFormatString ="{0:c}", ApplyFormatInEditMode = false)]
         public decimal Tariffa { get; set; }
 
         [Required(ErrorMessage = "Il campo è obbligatorio")]
@@ -211,6 +211,56 @@ namespace GestionaleHotel.Models
             
             }
             finally { con.Close(); }
+        }
+
+        public static List<Prenotazione> GetPrenotazioniByCodFisc(string CodiceFiscale)
+        {
+            SqlConnection con = Connessione.GetConnection();
+            List<Prenotazione> ListaPrenotazionibycodfisc = new List<Prenotazione>();
+
+            try
+            {
+                con.Open();
+                SqlCommand command = Connessione.GetCommand("Select IdPrenotazione, Numero, DataPrenotazione, InizioPrenotazione, FinePrenotazione, Tariffa, Nome, Cognome, CodiceFiscale, pernottamento.Descrizione from Prenotazioni inner join Camere on prenotazioni.idcamera = camere.idcamera inner join Clienti on prenotazioni.idclienti = clienti.idcliente inner join Pernottamento on prenotazioni.idpernottamento = pernottamento.id where CodiceFiscale = @codicefiscale", con);
+                SqlDataReader reader = command.ExecuteReader();
+                command.Parameters.AddWithValue("@codicefiscale", CodiceFiscale);
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Prenotazione pr = new Prenotazione();
+                        pr.Id = Convert.ToInt32(reader["IdPrenotazione"]);
+                        pr.DataPrenotazione = Convert.ToDateTime(reader["DataPrenotazione"]);
+                        pr.InizioPrenotazione = Convert.ToDateTime(reader["InizioPrenotazione"]);
+                        pr.FinePrenotazione = Convert.ToDateTime(reader["FinePrenotazione"]);
+                        pr.Tariffa = Convert.ToDecimal(reader["Tariffa"]);
+
+                        Camera ca = new Camera();
+                        pr.IdCamera = ca;
+                        ca.Numero = Convert.ToInt32(reader["Numero"]);
+
+                        Clienti c = new Clienti();
+                        pr.IdClienti = c;
+                        c.Nome = reader["Nome"].ToString();
+                        c.Cognome = reader["Cognome"].ToString();
+                        c.CodiceFiscale = reader["CodiceFiscale"].ToString();
+
+                        Pernottamento per = new Pernottamento();
+                        pr.IdPernottamento = per;
+                        per.Descrizione = reader["Descrizione"].ToString();
+
+                        ListaPrenotazionibycodfisc.Add(pr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+            finally { con.Close(); }
+            return ListaPrenotazionibycodfisc;
         }
     }
 }
